@@ -1,0 +1,37 @@
+{% extends 'common/_base.html' %}
+
+{% block title %}
+    Đăng Ký Thông Tin Người Dùng
+{% endblock title %}
+
+{% block header %}
+    Đăng Ký
+{% endblock header %}
+
+{% block content %}
+    {% load static %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="{% static 'images/django.webp'%}" alt="Logo" srcset="">
+            </div>
+            <div class="col-sm-6">
+                <form action="" method="post"  autocomplete="off">
+                    {% csrf_token %}
+                    {% for field in form %}
+                      <div class="form-group">
+                        {{ field.label }}
+                        {{ field }}
+                        {% if field.errors %}
+                          {% for error in field.errors %}
+                            <div style="display: block !important" class="invalid-feedback">{{ error }}</div>
+                          {% endfor %}
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Đăng Ký</button>
+                  </form>
+            </div>
+          </div>
+    </div>
+{% endblock content %}

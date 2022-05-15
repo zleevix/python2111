@@ -1,0 +1,40 @@
+{% load humanize %}
+{% load myfilter %}
+{% load static %}
+<div class="col-sm-4">
+    <div class="product-image-wrapper">
+        <div class="single-products">
+            <div class="productinfo text-center">
+                <a href="{% url 'view_product_detail' product_id=product.id %}">
+                    <img src="{{ product.image }}" alt="Ảnh {{product.name}}" />
+                </a>
+                {% if product.id|is_product_sale %}
+                <h2>
+                    <span style="text-decoration:line-through; font-size: 50%">{{ product.price|intcomma}}</span>
+                    <span>{{ product.id|get_discount_product|intcomma }}</span>    
+                đ</h2>
+                {% else %}
+                    <h2>{{ product.price|intcomma}}đ</h2>
+                {% endif %}
+                <p>{{ product.name}}</p>
+                <a data-href="{% if user.is_authenticated %} 
+                    {% url 'add_product_to_cart' product_id=product.id %}
+                {% else %}
+                    {% url 'login'%}
+                {% endif %}
+                    " data-user="{{ user.is_authenticated }}" class="btn btn-default add-to-cart">
+                    <iclass="fa fa-shopping-cart"></i>Add to cart</a>
+
+            </div>
+            {% if product.id|is_product_sale %}
+                <img src="{% static 'images/home/sale.png' %}" class="new" alt="">
+            {% endif %}
+        </div>
+        <!-- <div class="choose">
+            <ul class="nav nav-pills nav-justified">
+                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+            </ul>
+        </div> -->
+    </div>
+</div>

@@ -1,0 +1,33 @@
+{% load humanize %}
+{% load myfilter %}
+<table class="table table-condensed">
+    <thead>
+        <tr class="cart_menu">
+            <td class="description"></td>
+            <td class="price">Price</td>
+            <td class="quantity">Quantity</td>
+            <td class="total">Total</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data_detail in user_ordered.orderdetail_set.all %}
+            <tr>
+                <td class="cart_description">
+                    <h4>{{ data_detail.product.name }}</h4>
+                    <p>Web ID:  1089772{{ data_detail.product.id }}</p>
+                </td>
+                <td class="cart_price">
+                    <p>{{ data_detail.product.id|get_discount_product|intcomma }}đ</p>
+                </td>
+                <td class="cart_quantity">
+                    <div class="cart_quantity_button">
+                        {{ data_detail.quantity }}
+                    </div>
+                </td>
+                <td class="cart_total">
+                    <p class="cart_total_price">{{ data_detail.amount |intcomma }}đ</p>
+                </td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>

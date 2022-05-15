@@ -1,0 +1,593 @@
+{% extends 'common/_base.html' %}
+
+{% block title %}
+Index
+{% endblock title %}
+
+{% block content %}
+{% load static %}
+{% load myfilter %}
+{% load humanize %}
+<style>
+	#alert-add-product {
+		display: none;
+		position: fixed;
+		z-index:1000; 
+		background-color:dimgray; 
+		color:white; 
+		width: 500px; 
+		height: 200px; 
+		top:50%; 
+		left: 50%;
+	}
+	#alert-add-product span {
+		font-size: 100px;
+		text-align: center;
+		justify-items: center;
+		justify-content: center;
+	}
+</style>
+<section id="slider">
+	<!--slider-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#slider-carousel" data-slide-to="1"></li>
+						<li data-target="#slider-carousel" data-slide-to="2"></li>
+					</ol>
+
+					<div class="carousel-inner">
+						<div class="item active">
+							<div class="col-sm-6">
+								<h1><span>E</span>-SHOPPER</h1>
+								<h2>Free E-Commerce Template</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+									incididunt ut labore et dolore magna aliqua. </p>
+								<button type="button" class="btn btn-default get">Get it now</button>
+							</div>
+							<div class="col-sm-6">
+								<img src="{% static 'images/home/girl1.jpg' %}" class="girl img-responsive" alt="" />
+								<img src="{% static 'images/home/pricing.png' %}" class="pricing" alt="" />
+							</div>
+						</div>
+						<div class="item">
+							<div class="col-sm-6">
+								<h1><span>E</span>-SHOPPER</h1>
+								<h2>100% Responsive Design</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+									incididunt ut labore et dolore magna aliqua. </p>
+								<button type="button" class="btn btn-default get">Get it now</button>
+							</div>
+							<div class="col-sm-6">
+								<img src="{% static 'images/home/girl2.jpg' %}" class="girl img-responsive" alt="" />
+								<img src="{% static 'images/home/pricing.png' %}" class="pricing" alt="" />
+							</div>
+						</div>
+
+						<div class="item">
+							<div class="col-sm-6">
+								<h1><span>E</span>-SHOPPER</h1>
+								<h2>Free Ecommerce Template</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+									incididunt ut labore et dolore magna aliqua. </p>
+								<button type="button" class="btn btn-default get">Get it now</button>
+							</div>
+							<div class="col-sm-6">
+								<img src="{% static 'images/home/girl3.jpg' %}" class="girl img-responsive" alt="" />
+								<img src="{% static 'images/home/pricing.png' %}" class="pricing" alt="" />
+							</div>
+						</div>
+
+					</div>
+
+					<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+<!--/slider-->
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="left-sidebar">
+					<h2>Category</h2>
+					{% include 'common/categories.html' %}
+					<div class="brands_products">
+						<!--brands_products-->
+						<h2>Brands</h2>
+						{% include 'common/brands.html' %}
+					</div>
+					<!--/brands_products-->
+
+					<div class="price-range">
+						<!--price-range-->
+						<h2>Price Range</h2>
+						{% include 'common/price_range_filter.html' %}
+					</div>
+					<!--/price-range-->
+
+					<div class="shipping text-center">
+						<!--shipping-->
+						<img src="{% static 'images/home/shipping.jpg' %}" alt="" />
+					</div>
+					<!--/shipping-->
+
+				</div>
+			</div>
+
+			<div class="col-sm-9 padding-right">
+				<div class="features_items">
+					<!--features_items-->
+					<h2 class="title text-center">Features Items</h2>
+					{% for product in products %}
+						{% include 'common/product-item.html' %}
+					{% endfor %}
+				</div>
+				<!--features_items-->
+
+				<div class="category-tab">
+					<!--category-tab-->
+					<div class="col-sm-12">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
+							<li><a href="#blazers" data-toggle="tab">Blazers</a></li>
+							<li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
+							<li><a href="#kids" data-toggle="tab">Kids</a></li>
+							<li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div class="tab-pane fade active in" id="tshirt">
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery1.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery2.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery3.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery4.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="tab-pane fade" id="blazers">
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery4.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery3.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery2.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery1.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="tab-pane fade" id="sunglass">
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery3.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery4.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery1.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery2.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="tab-pane fade" id="kids">
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery1.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery2.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery3.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery4.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="tab-pane fade" id="poloshirt">
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery2.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery4.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery3.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{% static 'images/home/gallery1.jpg' %}" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i
+													class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--/category-tab-->
+
+				<div class="recommended_items">
+					<!--recommended_items-->
+					<h2 class="title text-center">recommended items</h2>
+
+					<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-4">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{% static 'images/home/recommend1.jpg' %}" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i
+														class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{% static 'images/home/recommend2.jpg' %}" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i
+														class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{% static 'images/home/recommend3.jpg' %}" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i
+														class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="col-sm-4">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{% static 'images/home/recommend1.jpg' %}" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i
+														class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{% static 'images/home/recommend2.jpg' %}" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i
+														class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{% static 'images/home/recommend3.jpg' %}" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i
+														class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+				</div>
+				<!--/recommended_items-->
+
+			</div>
+			<div id="alert-add-product">
+				<h1 class="content" style="text-align: center;"></h1>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	$(document).ready(function() {
+		$(".add-to-cart").each(function() {
+			$(this).click(function() {
+				let url = $(this).data("href");
+				if ($(this).data("user") == "True") {
+					$.ajax({
+						type:"GET",
+						url: url,
+						success: function(data) {
+							$("span.badge").text(data.data);
+							//alert("Thêm sản phẩm vào giỏ hàng thành công");
+							$("h1.content").text("Thêm sản phẩm vào giỏ hàng thành công");
+							$("#alert-add-product").show();
+							setTimeout(function(){
+								$("h1.content").text("");
+								$("#alert-add-product").hide();
+							}, 3000);
+						},
+						error: function(xhr, textStatus, errorThrown) {
+							console.log(errorThrown);
+						}
+					})
+				}
+				else {
+					window.location.href = url;
+				}
+			});
+		});
+	});
+</script>
+{% endblock content %}

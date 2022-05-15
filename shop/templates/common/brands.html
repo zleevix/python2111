@@ -1,0 +1,7 @@
+<div class="brands-name">
+    <ul class="nav nav-pills nav-stacked">
+        {% for brand in brands %}
+            <li><a href="{% url 'index'%}?brand={{brand.name}}"> <span class="pull-right">({{brand.product_set.count}})</span>{{brand.name}}</a></li>
+        {% endfor %}
+    </ul>
+</div>

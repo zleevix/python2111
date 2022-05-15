@@ -1,0 +1,9 @@
+{% load humanize %}
+<div class="well text-center">
+    <form action="">
+        <input type="text" class="span2" value="" data-slider-min="{{minimun_price.price__min}}" data-slider-max="{{maximun_price.price__max}}"
+        data-slider-step="100000" data-slider-value="[{{minimun_price.price__min}},10000000]" name="price" id="sl2"><br />
+        <b class="pull-left">{{minimun_price.price__min|intcomma}}đ</b> <b class="pull-right">{{maximun_price.price__max|intcomma}}đ</b>
+        <input type="submit" class="btn btn-default get" value="Find">
+    </form>
+</div>
